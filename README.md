@@ -200,11 +200,10 @@ One `email-lookup` event = one email processed.
 
 | Plan tier | Per email | Per 1,000 emails |
 |-----------|-----------|------------------|
-| Free / Starter (Bronze) | $0.002 | **$2.00** |
-| Scale (Silver) | $0.0015 | $1.50 |
-| Business (Gold) | $0.001 | $1.00 |
-| Platinum | $0.0008 | $0.80 |
-| Diamond / Enterprise | $0.0006 | $0.60 |
+| Free | $0.002 | **$2.00** |
+| Bronze | $0.0018 | $1.80 |
+| Silver | $0.0015 | $1.50 |
+| Gold, Platinum, and Diamond | $0.0006 | $0.60 |
 
 Higher Apify plans unlock lower rates automatically. No separate Mawsool subscription required on Apify.
 
