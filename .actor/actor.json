@@ -1,0 +1,40 @@
+{
+  "$schema": "https://apify.com/schemas/v1/actor.ide.json",
+  "actorSpecification": 1,
+  "name": "mawsool-email-linkedin-lookup",
+  "title": "Reverse Email Lookup | Email to LinkedIn",
+  "description": "Reverse email lookup. Paste an email and get the LinkedIn profile when the match is exact: name, headline, company, location, and profile URL. Uncertain matches come back empty, not guessed. Starting from $0.60 per 1,000 emails. No LinkedIn login and no cookies.",
+  "seoTitle": "Reverse Email Lookup to Find LinkedIn",
+  "seoDescription": "Reverse email lookup. Paste an email, get the LinkedIn profile on an exact match. Starting from $0.60 per 1,000. No cookies.",
+  "categories": [
+    "LEAD_GENERATION",
+    "SOCIAL_MEDIA",
+    "AUTOMATION"
+  ],
+  "version": "2.2",
+  "buildTag": "latest",
+  "minMemoryMbytes": 256,
+  "maxMemoryMbytes": 2048,
+  "defaultRunOptions": {
+    "build": "latest",
+    "timeoutSecs": 86400,
+    "memoryMbytes": 512
+  },
+  "environmentVariables": {
+    "MAWSOOL_API_BASE_URL": "https://rev-api.173.212.217.163.sslip.io",
+    "MAWSOOL_API_FALLBACK_BASE_URL": "https://rev-api.mawsool.tech",
+    "MAWSOOL_API_KEY": "@mawsoolApiKeyPrimary",
+    "MAWSOOL_API_FALLBACK_KEY": "@mawsoolApiKey"
+  },
+  "meta": {
+    "templateId": "ts-empty",
+    "generatedBy": "Cursor Agent"
+  },
+  "input": "./input_schema.json",
+  "output": "./output_schema.json",
+  "storages": {
+    "dataset": "./dataset_schema.json"
+  },
+  "pricing": "./pay_per_event.json",
+  "dockerfile": "../Dockerfile"
+}
