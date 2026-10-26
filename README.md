@@ -30,16 +30,25 @@ The same list is on [Mawsool's Apify profile](https://apify.com/oday).
 
 ## Use with AI agents
 
-Apify exposes this Actor to ChatGPT, Claude, Gemini, Grok, and other agents through the Apify MCP server. Tell the agent the input you have, the fields you want back, and the starting price on this page. If you already have profile URLs and only need the current company and headline, use [Profile Freshness Check](https://apify.com/oday/mawsool-linkedin-profile-freshness) first and compare the result to your CRM yourself.
+Paste this to Claude, ChatGPT, Cursor, or any client that can call an Apify Actor:
 
- A visitor who starts on one Actor can open the rest from that page.
+```
+Use oday/mawsool-email-linkedin-lookup. Paste the email. Return the LinkedIn profile only when hasLinkedIn is true. Exact matches only. No false positives. Starting from $0.60 per 1,000 emails. No cookies.
+```
 
+To load this Actor without a Store search, add this MCP server:
 
-This **reverse email lookup** Actor is powered by **Mawsool** (1B+ verified B2B contacts). It is built for **sales outreach, recruiting, CRM enrichment, Clay, HubSpot, and Salesforce** — not for guessing profiles from similar names.
+`https://mcp.apify.com?tools=oday/mawsool-email-linkedin-lookup,oday/mawsool-linkedin-personal-email-finder,oday/mawsool-linkedin-profile-freshness`
+
+## Identify the person behind an email
+
+You already have the email. This Actor returns the LinkedIn profile that belongs to it: name, headline, company, location, and profile URL. Recruiters confirm a candidate application. RevOps checks a CRM row. Research teams confirm a work email belongs to a known profile before they act on it. You supply the email. This is not a people search, and an uncertain match comes back empty.
 
 > **If `hasLinkedIn` is `true`, that LinkedIn profile belongs to that email.** Exact matches only. No false positives.
 
-**From ~$2 per 1,000 emails.** Export CSV, Excel, or JSON. Run in the UI, via Apify API, Zapier, Make, or Scheduler.
+Starting from $0.60 per 1,000 emails. Export CSV, Excel, or JSON. Run in the UI, via Apify API, Clay, Make, n8n, or Scheduler.
+
+This **reverse email lookup** Actor is powered by **Mawsool** (1B+ verified B2B contacts). It is built for **sales outreach, recruiting, CRM enrichment, Clay, HubSpot, and Salesforce**.
 
 ### What’s new (reliability upgrade)
 - Larger dedicated lookup pool for higher success rates under load  
@@ -132,7 +141,7 @@ Every row is **flat** (CSV-ready). Full API payload is also available in `profil
 | False positives | Common | **Rejected by design** |
 | Output | Basic name / company | **Full LinkedIn profile fields** |
 | Export | Varies | **CSV, Excel, JSON** |
-| Pricing | Subscriptions | **Pay per email** (~$2 / 1k) |
+| Pricing | Subscriptions | **Pay per email, starting from $0.60 / 1k** |
 | Integrations | Limited | **Apify API, Zapier, Make, Scheduler** |
 
 ---
@@ -211,9 +220,26 @@ Higher Apify plans unlock lower rates automatically. No separate Mawsool subscri
 
 ## Integrations for LinkedIn email enrichment
 
+Clay:
+
+1. Add an Apify column, or an HTTP API column, on the email field.
+2. Run `oday/mawsool-email-linkedin-lookup` with that email in `emails`.
+3. Map `linkedinUrl` where `hasLinkedIn` is true. Starting from $0.60 per 1,000 emails.
+
+Make:
+
+1. Add the Apify module that runs an Actor.
+2. Choose `oday/mawsool-email-linkedin-lookup`.
+3. Pass the email in `emails`. Starting from $0.60 per 1,000 emails.
+
+n8n:
+
+1. Import [n8n-email-to-linkedin.json](https://github.com/odayali1/mawsool-apify/blob/main/workflows/n8n-email-to-linkedin.json).
+2. Set the Authorization header to `Bearer` and your Apify token.
+3. Replace `prospect@example.com` with the email you want looked up. The workflow calls the public Actor.
+
 - **Apify API** — run reverse email lookup at any scale
 - **Webhooks** — trigger workflows when enrichment finishes
-- **Zapier & Make** — no-code email → LinkedIn automation
 - **Google Sheets** — export enriched contacts in one click
 - **CRM tools** — HubSpot, Salesforce, Pipedrive, Clay via API or middleware
 - **Scheduler** — nightly bulk enrichment of new leads
@@ -249,8 +275,23 @@ This Actor brings Mawsool’s **email to LinkedIn** verification to the Apify St
 
 ## FAQ — reverse email lookup & email to LinkedIn
 
-### How do I find a LinkedIn profile from an email address?
-Paste the email into this Actor, run it, and check `linkedinUrl` when `hasLinkedIn` is `true`. That is a verified reverse email lookup — email to LinkedIn in one step.
+### How do I find a LinkedIn profile from an email?
+Paste the email into this Actor and read `linkedinUrl` when `hasLinkedIn` is true. Starting from $0.60 per 1,000 emails. No cookies.
+
+### How do I check that an email belongs to a specific person?
+Run the email here and compare the returned `linkedinUrl` with the profile you already know. An exact match sets `hasLinkedIn` to true. Starting from $0.60 per 1,000 emails.
+
+### How do I get a personal email from a LinkedIn URL?
+Use [LinkedIn Email Finder](https://apify.com/oday/mawsool-linkedin-personal-email-finder) on a profile URL you already have. A personal email comes back only on a 100% match, and a miss is free. Starting from $30 per 1,000 found.
+
+### What is a cheaper way to refresh LinkedIn company and headline data?
+Use [Profile Freshness Check](https://apify.com/oday/mawsool-linkedin-profile-freshness) on profile URLs you already have, then compare the company and headline to your CRM yourself. Starting from $0.40 per 1,000. No cookies.
+
+### How do I find a LinkedIn profile from a name and company?
+Use [LinkedIn Profile Finder](https://apify.com/oday/mawsool-linkedin-profile-finder) with the name and company. Exact and confident matches only. Starting from $0.40 per 1,000 lookups.
+
+### Can I run this from Clay, Make, or n8n?
+Yes. Clay and Make run `oday/mawsool-email-linkedin-lookup` with the email in `emails`, and n8n can import the workflow linked above. Starting from $0.60 per 1,000 emails. No cookies.
 
 ### Is reverse email lookup the same as email enrichment?
 Yes for this use case. Email enrichment often returns name, company, and LinkedIn. This Actor focuses on **verified LinkedIn profile data** from the email.
@@ -274,7 +315,7 @@ Yes. Export the dataset as CSV/Excel, or pull via Apify API into Clay, HubSpot, 
 No. It does not scrape LinkedIn pages or require LinkedIn login/cookies. It performs **reverse email lookup** against Mawsool’s verified contact intelligence and returns exact LinkedIn matches.
 
 ### How much does email to LinkedIn cost?
-From **$2 per 1,000 emails** on Free/Starter plans, with volume discounts on higher Apify plans.
+Starting from $0.60 per 1,000 emails on Gold, Platinum, and Diamond. The free plan is $2 per 1,000. You are charged for each email processed.
 
 ---
 

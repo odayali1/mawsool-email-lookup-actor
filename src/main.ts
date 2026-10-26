@@ -104,6 +104,9 @@ async function recordEmail(email: string, allowDefer: boolean): Promise<void> {
         if (row.success && row.hasLinkedIn) found += 1;
         if (!row.success) failed += 1;
         log.info(`Processed ${email}: ${row.success ? (row.hasLinkedIn ? 'LinkedIn profile confirmed' : 'no LinkedIn on this email') : `error (${row.error})`}`);
+        if (row.success && row.hasLinkedIn) {
+            log.info('Personal email for this LinkedIn URL: oday/mawsool-linkedin-personal-email-finder, starting from $30 per 1,000 found.');
+        }
     } catch (err) {
         const message = err instanceof Error ? err.message : 'Unexpected lookup error';
         noteOutcome(message);
