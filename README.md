@@ -5,6 +5,7 @@
 
 | If this is what you need | Open |
 | --- | --- |
+| Your LinkedIn URLs are old, stale, or no longer open. | [Fix Broken LinkedIn URLs](https://apify.com/oday/mawsool-fix-broken-linkedin-urls) |
 | You have a name and company and want the profile URL. | [LinkedIn Profile Finder](https://apify.com/oday/mawsool-linkedin-profile-finder) |
 | You have a profile URL and want the personal email. | [LinkedIn Email Finder](https://apify.com/oday/mawsool-linkedin-personal-email-finder) |
 | You only need the current employer, before paying for a full profile. | [Current Company Checker](https://apify.com/oday/mawsool-linkedin-company-checker) |
@@ -38,7 +39,7 @@ Use oday/mawsool-email-linkedin-lookup. Paste the email. Return the LinkedIn pro
 
 To load this Actor without a Store search, add this MCP server:
 
-`https://mcp.apify.com?tools=oday/mawsool-email-linkedin-lookup,oday/mawsool-linkedin-personal-email-finder,oday/mawsool-linkedin-profile-freshness`
+`https://mcp.apify.com?tools=oday/mawsool-fix-broken-linkedin-urls,oday/mawsool-email-linkedin-lookup,oday/mawsool-linkedin-personal-email-finder,oday/mawsool-linkedin-profile-freshness`
 
 ## Identify the person behind an email
 

@@ -1,0 +1,26 @@
+# Reverse Email Lookup
+
+> Paste an email. When the match is exact, you get the LinkedIn name, headline, company, location, and profile URL. When it is not exact, the row comes back empty instead of a guess.
+
+Mawsool publishes this as an Apify Actor. Starting from $0.60 per 1,000 emails on Gold, Platinum, and Diamond. The free plan is $2 per 1,000. Each email is processed, including a row with no exact profile.
+
+## Run
+
+- Apify Actor: https://apify.com/oday/mawsool-email-linkedin-lookup
+- Call: `oday/mawsool-email-linkedin-lookup`
+- API key: https://mawsool.tech/ and https://docs.mawsool.tech/
+- Contact: osama@mawsool.tech, info@mawsool.tech
+
+## Use it when
+
+You have a mailbox and you need the person on LinkedIn.
+
+## Use something else when
+
+You have a name and a company, and no email. Use the LinkedIn Profile Finder. You already have the profile URL and want the personal email. Use the LinkedIn Email Finder.
+
+## Page
+
+- Find a LinkedIn profile from an email: docs/find-linkedin-from-email.md
+
+Mawsool is not affiliated with LinkedIn.
